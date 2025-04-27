@@ -11,7 +11,7 @@ const Video = ({ src, className, thumbnail }) => {
   };
 
   return (
-    <div className={`relative w-full  h-full ${className}`}>
+    <div className={`relative w-full rounded-2xl  h-full ${className}`}>
       <video
         ref={videoRef}
         className="w-full h-full object-cover rounded-2xl"

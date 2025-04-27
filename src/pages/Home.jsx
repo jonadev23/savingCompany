@@ -3,7 +3,8 @@ import Button from "../components/Button";
 import man from "../assets/images/man.jpg";
 import Video from "../components/Video";
 import vid from "../assets/videos/video.mp4";
-import AutoPlay from "../components/AutoPlay";
+import Lottie from "react-lottie";
+import animationData from "../assets/lotties/heart.json";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,8 +21,17 @@ import hfb from "../assets/logos/hfb.jpg";
 import shell from "../assets/logos/shell.png";
 import stanbic from "../assets/logos/stanbic.jpg";
 import { MdFlight } from "react-icons/md";
+import { Parallax } from "react-scroll-parallax";
 
 const Home = () => {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   const settings = {
     dots: false,
     infinite: true,
@@ -47,8 +57,8 @@ const Home = () => {
         <div className="flex justify-between py-[1%]">
           <div className="w-7/12">
             <h1 className="text-7xl font-medium text-black/80">
-              Empowering <span className="text-blue-600">driving success</span>,
-              Shaping the Future
+              Empowering <span className="text-[#258cda]">driving success</span>
+              , Shaping the Future
             </h1>
             <p className="py-8 ">
               Empowering innovation, driving success , and shaping the future
@@ -85,7 +95,7 @@ const Home = () => {
         <div className="text-5xl text-center flex justify-center  font-medium text-black">
           <div className="w-7/12 py-[7%]">
             Innovation and collaboration drive{" "}
-            <span className="border-b-2 border-blue-400">
+            <span className="border-b-2 borderlue-[#258cda]">
               sustainable drive
             </span>
           </div>
@@ -127,7 +137,7 @@ const Home = () => {
             </div>
           </div>
           <div className="w-6/12 px-[10%] " id="func">
-            <ul>
+            {/* <ul>
               <li className="bg-white text-center  my-2 text-black py-2">
                 Home
               </li>
@@ -137,7 +147,8 @@ const Home = () => {
               <li className="bg-white text-center my-2 text-black py-2">
                 Info
               </li>
-            </ul>
+            </ul> */}
+            <Lottie options={defaultOptions} height={300} width={300} />
           </div>
         </div>
         {/* image 2 */}
@@ -271,7 +282,8 @@ const Home = () => {
         </div>
       </section>
       {/* aboutUs */}
-      <section className="bg-blue-100 py-[8%]">
+
+      <section className="bg-blue-100 relative z-10 py-[8%]">
         <div className="flex   justify-center items-center text-center">
           <span className="w-1/2">
             <h3 className="text-lg ">About Us</h3>
@@ -344,6 +356,30 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* subfooter */}
+      <div className="bg-black">
+        <Parallax speed={-20}>
+          <div className="bg-black text-white px-[4%]">
+            <div className="grid grid-cols-3 gap-4 py-[8%] ">
+              <div className=" text-5xl">
+                <p>Get that money quick</p>
+              </div>
+              <div className=" "></div>
+              <div className="grid gap-10">
+                <span className=" text-lg font-medium">
+                  Great businesses are built on innovation, dedication, and
+                  resilience.
+                </span>
+
+                <Button className={"bg-white text-black px-4 py-1 rounded-3xl"}>
+                  Book a Demo
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Parallax>
+      </div>
     </div>
   );
 };

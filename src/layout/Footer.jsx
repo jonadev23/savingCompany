@@ -7,7 +7,7 @@ import { FaInstagramSquare } from "react-icons/fa";
 const Footer = () => {
   return (
     <div className="bg-black text-white px-[4%]">
-      <div className="grid grid-cols-3 gap-4 py-[8%] ">
+      {/* <div className="grid grid-cols-3 gap-4 py-[8%] ">
         <div className=" text-5xl">
           <p>Get that money quick</p>
         </div>
@@ -22,7 +22,7 @@ const Footer = () => {
             Book a Demo
           </Button>
         </div>
-      </div>
+      </div> */}
       <div className="flex py-[2%] justify-between">
         <div className="w-24  text-4xl">DEMO</div>
         <div>
