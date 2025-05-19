@@ -1,172 +1,178 @@
-import React from "react";
-import Button from "../components/Button";
-import thumbnail from "../assets/images/thumbnail.jpg";
-import b from "../assets/images/card2.jpg";
-import c from "../assets/images/card3.jpg";
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import woman from "../assets/images/woman.jpg";
-import { Parallax } from "react-scroll-parallax";
+import man from "../assets/images/man.jpg";
+// Animation variants
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
 const About = () => {
-  return (
-    <div>
-      {/* intro */}
-      <section className="h-[100vh] my-[4%] mx-[10%]">
-        <div className="flex justify-between py-[1%]">
-          <div className="w-7/12">
-            <span>
-              <p className="text-sm">About Us</p>
-            </span>
-            <h1 className="text-7xl font-medium text-black/80">
-              Let us Invest to{" "}
-              <span className="text-[#258cda]">start a journey</span>,
-            </h1>
-            <p className="py-8 ">
-              Empowering innovation, driving success , and shaping the future
-              together through creative solutions, sustainable practices, and
-              unparalleled customer focus. We believe in collaboration, and
-              delivering excellence that transforms.
-            </p>
-            <Button
-              className={"text-white text-sm bg-black rounded-3xl px-6 py-2 "}
-            >
-              Lets Talk
-            </Button>
-          </div>
-          <div className="w-4/12 h-100 flex flex-col">
-            <img
-              src={woman}
-              className="rounded-full h-full object-cover object-center"
-              alt=""
-              srcset=""
-            />
-          </div>
-        </div>
-      </section>
-      {/* other */}
-      <section className=" bg-black flex justify-between  text-white rounded-2xl mx-[4%] h-[100vh]">
-        <div id="words" className="w-1/2 px-[6%]">
-          <ul>
-            <li className=" border-b-1 border-b-white text-white py-4">
-              <h1 className="text-3xl py-6">1,000,000</h1>
-              <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Pariatur officia incidunt labore sint repudiandae explicabo
-                dignissimos
-              </p>
-            </li>
-            <li className=" border-b-1 border-b-white text-gray-500 py-4">
-              <h1 className="text-3xl py-6">1,000,000</h1>
-              <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Pariatur officia incidunt labore sint repudiandae explicabo
-                dignissimos
-              </p>
-            </li>
-            <li className=" border-b-1 border-b-white text-white py-4">
-              <h1 className="text-3xl py-6">1,000,000</h1>
-              <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Pariatur officia incidunt labore sint repudiandae explicabo
-                dignissimos
-              </p>
-            </li>
-          </ul>
-        </div>
-        <div
-          style={{
-            backgroundImage: `url(${thumbnail})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
-          className="w-1/2 brightness-80 bg-white h-full "
-          id="func"
-        ></div>
-      </section>
-      {/* info */}
-      <section className="  flex justify-between items-center   rounded-2xl mx-[4%] h-[100vh]">
-        <div id="words" className="w-1/2 px-[6%]">
-          <ul>
-            <li className="   py-4">
-              <h1 className="text-3xl font-bold py-6">Lets get started now</h1>
-              <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Pariatur officia incidunt labore sint repudiandae explicabo
-                dignissimos
-              </p>
-              <p className="pb-10">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-                voluptatum libero minus non hic. Ex quo debitis suscipit
-                corporis beatae. Perspiciatis quia dolore aperiam, labore
-                excepturi dolorum ipsam fugit nulla?
-              </p>
-              <Button
-                className={
-                  "text-white text-sm bg-black rounded-3xl px-6 py-2  "
-                }
-              >
-                Visit our site
-              </Button>
-            </li>
-          </ul>
-        </div>
-        <div className="w-1/2 bg-white h-[20rem]  " id="func">
-          <img src={b} className="rounded-4xl" />
-        </div>
-      </section>
-      {/* info 2 */}
-      <section className="relative z-10 bg-blue-100 flex justify-between items-center   rounded-2xl px-[4%] h-[100vh]">
-        <div id="words" className="w-1/2 px-[6%]">
-          <ul>
-            <li className="   py-4">
-              <h1 className="text-3xl font-bold py-6">Lets get started now</h1>
-              <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Pariatur officia incidunt labore sint repudiandae explicabo
-                dignissimos
-              </p>
-              <p className="pb-10">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-                voluptatum libero minus non hic. Ex quo debitis suscipit
-                corporis beatae. Perspiciatis quia dolore aperiam, labore
-                excepturi dolorum ipsam fugit nulla?
-              </p>
-              <Button
-                className={
-                  "text-white text-sm bg-black rounded-3xl px-6 py-2  "
-                }
-              >
-                Visit our site
-              </Button>
-            </li>
-          </ul>
-        </div>
-        <div className="w-1/2 bg-white h-[20rem] rounded-4xl  " id="func">
-          <img src={c} className="rounded-4xl" />
-        </div>
-      </section>
-      {/* subfooter */}
-      <div className="bg-black">
-        <Parallax speed={-20}>
-          <div className="bg-black text-white px-[4%]">
-            <div className="grid grid-cols-3 gap-4 py-[8%] ">
-              <div className=" text-5xl">
-                <p>Learn More about Us</p>
-              </div>
-              <div className=" "></div>
-              <div className="grid gap-10">
-                <span className=" text-lg font-medium">
-                  Great businesses are built on innovation, dedication, and
-                  resilience.
-                </span>
+  const [ref1, inView1] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [ref2, inView2] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [ref3, inView3] = useInView({ threshold: 0.2, triggerOnce: true });
 
-                <Button className={"bg-white text-black px-4 py-1 rounded-3xl"}>
-                  Book a Demo
-                </Button>
+  return (
+    <div className="bg-white">
+      {/* Hero Section */}
+      <section className="relative h-[70vh] bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div className="container mx-auto px-6 h-full flex items-center">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            className="max-w-2xl"
+          >
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Pioneering Intelligent Investment Solutions
+            </h1>
+            <p className="text-xl text-blue-100">
+              For over two decades, we've redefined wealth management through innovation and integrity
+            </p>
+          </motion.div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-900" />
+      </section>
+
+      {/* Stats Grid */}
+      <section className="container mx-auto px-6 py-16 -mt-16">
+        <motion.div
+          ref={ref1}
+          initial="hidden"
+          animate={inView1 ? "visible" : "hidden"}
+          variants={fadeIn}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 bg-white rounded-2xl shadow-xl p-8"
+        >
+          <div className="text-center">
+            <div className="text-4xl font-bold text-blue-900 mb-2">$256B+</div>
+            <div className="text-gray-600">Assets Under Management</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-blue-900 mb-2">98%</div>
+            <div className="text-gray-600">Client Retention Rate</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-blue-900 mb-2">150+</div>
+            <div className="text-gray-600">Global Institutions</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-blue-900 mb-2">27</div>
+            <div className="text-gray-600">Countries Operating</div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Philosophy Section */}
+      <section className="bg-blue-50 py-24">
+        <div className="container mx-auto px-6">
+          <motion.div
+            ref={ref2}
+            initial="hidden"
+            animate={inView2 ? "visible" : "hidden"}
+            variants={fadeIn}
+            className="grid md:grid-cols-2 gap-16 items-center"
+          >
+            <div className="relative group">
+              <div style={{backgroundImage:`url(${man})`,backgroundSize:'cover',backgroundPosition:'center'}} className=" h-96 rounded-3xl transform group-hover:scale-105 transition-all duration-500" />
+              <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-2xl shadow-lg w-3/4">
+                <h3 className="text-xl font-bold text-blue-900 mb-2">Sustainable Growth</h3>
+                <p className="text-gray-600">ESG-integrated investment strategies</p>
               </div>
             </div>
+            
+            <div>
+              <h2 className="text-4xl font-bold text-blue-900 mb-8">Our Investment Philosophy</h2>
+              <div className="space-y-6">
+                <div className="border-l-4 border-red-600 pl-4">
+                  <h3 className="text-xl font-semibold text-blue-900 mb-2">Long-term Value Creation</h3>
+                  <p className="text-gray-600">
+                    We focus on fundamental analysis and durable competitive advantages to drive sustainable returns.
+                  </p>
+                </div>
+                <div className="border-l-4 border-blue-600 pl-4">
+                  <h3 className="text-xl font-semibold text-blue-900 mb-2">Risk-aware Approach</h3>
+                  <p className="text-gray-600">
+                    Our proprietary risk management framework protects capital while seeking growth opportunities.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Leadership Team */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div
+            ref={ref3}
+            initial="hidden"
+            animate={inView3 ? "visible" : "hidden"}
+            variants={fadeIn}
+          >
+            <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">Global Leadership</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[1, 2, 3].map((item) => (
+                <div key={item} className="group relative">
+                  <div style={{backgroundImage:`url(${woman})`,backgroundSize:'cover',backgroundPosition:'center'}} className="bg-gray-300 h-96 rounded-2xl overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-xl font-bold mb-1">Sarah Johnson</h3>
+                    <p className="text-blue-200">Chief Investment Officer</p>
+                    <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <p className="text-sm">20+ years in portfolio management</p>
+                      <button className="mt-2 text-red-400 hover:text-red-300 font-semibold">
+                        View Profile →
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="bg-blue-900 text-white py-24">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-16 text-center">Our Journey</h2>
+          <div className="relative">
+            <div className="absolute left-1/2 w-1 bg-white/20 h-full -translate-x-1/2" />
+            {[
+              { year: '1998', event: 'Founded in New York City' },
+              { year: '2005', event: 'Expanded to European markets' },
+              { year: '2012', event: 'Launched ESG investment framework' },
+              { year: '2020', event: '$100B+ assets under management' },
+            ].map((item, index) => (
+              <div key={index} className="mb-12 relative">
+                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'} p-6`}>
+                  <div className="bg-white/10 p-8 rounded-2xl backdrop-blur-sm">
+                    <div className="text-red-400 font-bold mb-2">{item.year}</div>
+                    <div className="text-xl">{item.event}</div>
+                  </div>
+                </div>
+                <div className="absolute top-6 left-1/2 -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full" />
+              </div>
+            ))}
           </div>
-        </Parallax>
-      </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-8">Ready to Partner with Excellence?</h2>
+          <p className="text-xl mb-12 max-w-2xl mx-auto text-blue-100">
+            Discover how our innovative strategies can help achieve your financial ambitions
+          </p>
+          <button className="bg-red-600 hover:bg-red-700 px-12 py-4 rounded-xl text-lg font-semibold transition-colors">
+            Schedule Consultation
+          </button>
+        </div>
+      </section>
     </div>
   );
 };

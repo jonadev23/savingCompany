@@ -1,90 +1,128 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
+import { NavLink } from "react-router-dom";
 import Banner from "./Banner";
 import Button from "../components/Button";
-import { NavLink } from "react-router-dom";
 import hover from "../assets/images/hover.jpg";
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(false);
-
-  const handleMouseEnter = () => {
-    setOpenSubmenu(true);
-  };
-
-  const handleMouseLeave = () => {
-    setOpenSubmenu(false);
-  };
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const submenuRef = useRef();
 
   return (
-    <div className="sticky top-0 z-50">
+    <div className="top-0 z-50 bg-white shadow-sm">
       <Banner />
-      <section
-        className={`flex justify-between bg-white px-[10%] py-2 items-center transition-shadow duration-300 ${
-          isScrolled ? "shadow-md" : ""
-        }`}
-      >
-        <div className="w-20" id="logo">
-          <div className="w-24 font-medium  text-3xl">DEMO</div>
+
+      <section className="flex justify-between px-[10%] py-4 items-center relative">
+        {/* Logo */}
+        <div id="logo" className="text-3xl font-bold text-blue-600">
+          Wiram<span className="text-red-600">.</span>
         </div>
-        <div>
-          <ul className="flex gap-8 text-sm font-medium">
-            <li className="py-2 hover:underline transition-opacity duration-200">
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              className="py-2 hover:underline transition-opacity duration-200 relative group"
+
+        {/* Navigation */}
+        <ul className="flex gap-8 items-center text-gray-600 font-medium relative">
+          <li className="py-2 hover:text-blue-600 transition-colors duration-200">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-blue-600 border-b-2 border-blue-600" : ""
+              }
             >
-              <NavLink to="/about-us">About</NavLink>
-              <div>
-                <div
-                  className={`absolute flex justify-between w-[30rem] p-10 left-0 bg-white shadow-lg rounded-md mt-2
-          transition-all duration-300 ease-out z-50
-          ${
-            openSubmenu
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-2 pointer-events-none"
-          }`}
-                >
-                  <ul className="flex w-6/12 flex-col gap-2 text-sm font-medium">
-                    <li className="hover:bg-gray-100 p-2 rounded">Service 1</li>
-                    <li className="hover:bg-gray-100 p-2 rounded">Service 2</li>
-                    <li className="hover:bg-gray-100 p-2 rounded">Service 3</li>
+              Home
+            </NavLink>
+          </li>
+
+          {/* About with submenu */}
+          <li
+            className="relative py-2 group hover:text-blue-600 transition-colors duration-200"
+            onMouseEnter={() => setOpenSubmenu(true)}
+            onMouseLeave={() => setOpenSubmenu(false)}
+          >
+            <NavLink
+              to="/about-us"
+              className={({ isActive }) =>
+                isActive ? "text-blue-600 border-b-2 border-blue-600" : ""
+              }
+            >
+              About
+            </NavLink>
+
+            {/* Submenu */}
+            {openSubmenu && (
+              <div
+                ref={submenuRef}
+                className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-lg z-50 w-[35rem] border-t-4 border-red-600 transition-all duration-300 ease-out"
+              >
+                <div className="flex gap-6 p-6">
+                  <ul className="flex flex-col gap-2 w-1/2">
+                    <li className="p-2 hover:bg-blue-50 rounded-lg text-blue-900">
+                      <NavLink to="/services/wealth" className="block">
+                        Wealth Management
+                      </NavLink>
+                    </li>
+                    <li className="p-2 hover:bg-blue-50 rounded-lg text-blue-900">
+                      <NavLink to="/services/investment" className="block">
+                        Investment Banking
+                      </NavLink>
+                    </li>
+                    <li className="p-2 hover:bg-blue-50 rounded-lg text-blue-900">
+                      <NavLink to="/services/asset" className="block">
+                        Asset Management
+                      </NavLink>
+                    </li>
                   </ul>
-                  <div className="bg-black rounded-2xl p-5 text-sm text-white w-full">
-                    Opportunities don't happen. You create them
-                    <div className="py-2">
-                      {" "}
-                      <img src={hover} alt="" srcset="" />{" "}
+                  <div className="w-1/2 bg-blue-900 rounded-lg p-4 text-white">
+                    <div className="text-sm mb-3">
+                      "Creating opportunities through strategic investments"
+                    </div>
+                    <div className="border-2 border-blue-300 rounded-lg overflow-hidden">
+                      <img src={hover} alt="Investment opportunities" className="w-full h-auto" />
                     </div>
                   </div>
                 </div>
               </div>
-            </li>
+            )}
+          </li>
 
-            <li className="py-2">Book</li>
-            <li className="py-2">Invest</li>
-            <li className="py-2">Support</li>
-            <li className="py-2 hover:underline transition-opacity duration-200 relative group">
-              <NavLink to="/contact">Contact</NavLink>
-            </li>
-            <li>
-              <Button className="ring rounded-3xl px-6 py-2">
-                Book a Demo
-              </Button>
-            </li>
-          </ul>
-        </div>
+          {/* Other links */}
+          <li className="py-2 hover:text-blue-600 transition-colors duration-200">
+            <NavLink
+              to="/blogs"
+              className={({ isActive }) =>
+                isActive ? "text-blue-600 border-b-2 border-blue-600" : ""
+              }
+            >
+              Blogs
+            </NavLink>
+          </li>
+
+          <li className="py-2 hover:text-blue-600 transition-colors duration-200">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-blue-600 border-b-2 border-blue-600" : ""
+              }
+            >
+              Invest
+            </NavLink>
+          </li>
+
+          <li className="py-2 hover:text-blue-600 transition-colors duration-200">
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? "text-blue-600 border-b-2 border-blue-600" : ""
+              }
+            >
+              Contact
+            </NavLink>
+          </li>
+
+          <NavLink to="/login">
+            <Button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full transition-colors duration-200">
+              Login
+            </Button>
+          </NavLink>
+        </ul>
       </section>
     </div>
   );
